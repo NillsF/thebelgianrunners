@@ -1,184 +1,70 @@
-{{ $heroImg := resources.Get "images/hero-belgian-flag-overlook.jpg" }}
-{{ $finishImg := resources.Get "images/finish-line-inside-trail.jpg" }}
-{{ $selfieImg := resources.Get "images/trailhead-selfie.jpg" }}
-{{ $igURL := "https://instagram.com/thebelgianrunners" }}
-
-{{/* ---------------------------------------------------------------- */}}
-{{/* 1. Hero                                                          */}}
-{{/* ---------------------------------------------------------------- */}}
-<section class="tbr-hero tbr-full-bleed">
-  {{ with $heroImg }}
-    {{ $resized := .Resize "1600x" }}
-    <img
-      class="tbr-hero__image"
-      src="{{ $resized.Permalink }}"
-      alt="Nills and Kelly holding a Belgian flag on a trail overlooking the South Bay, California"
-    />
-  {{ end }}
-  <div class="tbr-hero__panel">
-    <h1 class="tbr-hero__title">Two Belgians running around California and beyond.</h1>
-    <p class="tbr-hero__lead">
-      We're Nills and Kelly — middle-of-the-pack runners who take training
-      seriously, chase increasingly questionable distances, and share what we
-      learn along the way. Not elite athletes, not coaches, just two people
-      who love this sport.
-    </p>
-    <div class="tbr-hero__actions">
-      <a href="{{ $igURL }}" target="_blank" rel="external noopener" class="tbr-btn tbr-btn--primary">
-        Follow us on Instagram
-      </a>
-      <a href="{{ "posts" | relURL }}" class="tbr-btn tbr-btn--outline">
-        Read our stories
-      </a>
-    </div>
-  </div>
-</section>
-
-{{/* ---------------------------------------------------------------- */}}
-{{/* 2. What we share                                                 */}}
-{{/* ---------------------------------------------------------------- */}}
-<section class="tbr-section">
-  <div class="tbr-section__inner">
-    <h2 class="tbr-heading">What we share</h2>
-    <p class="tbr-lede">
-      This started as a way to keep friends and family back home up to speed.
-      It turned into a running log of everything we're into on the trails and
-      beyond.
-    </p>
-    <div class="tbr-topics">
-      {{ $topics := slice
-        (dict "name" "Trail & ultrarunning" "desc" "Race reports from 50Ks to 100 milers, written honestly — the highs, the low points, and everything that went sideways.")
-        (dict "name" "Training" "desc" "What our week-to-week training actually looks like as two working, middle-of-the-pack runners, not a coaching program.")
-        (dict "name" "Gear" "desc" "Shoes, packs and kit we've actually run hundreds of miles in, with the good and the bad included.")
-        (dict "name" "Adventure" "desc" "Trips, travel and trails from California and beyond — running as an excuse to see more of the world.")
-        (dict "name" "Humor" "desc" "Because taking running seriously doesn't mean taking ourselves seriously.")
-      }}
-      {{ range $topics }}
-        <div>
-          <h3 class="tbr-topic__name">{{ .name }}</h3>
-          <p class="tbr-topic__desc">{{ .desc }}</p>
-        </div>
-      {{ end }}
-    </div>
-  </div>
-</section>
-
-{{/* ---------------------------------------------------------------- */}}
-{{/* 3. Latest stories                                                */}}
-{{/* ---------------------------------------------------------------- */}}
+{{ $igURL := .Params.instagram }}
 {{ $stories := where .Site.RegularPages "Type" "posts" }}
-<section class="tbr-section tbr-section--muted">
-  <div class="tbr-section__inner">
-    <h2 class="tbr-heading">Latest stories</h2>
-    {{ if $stories }}
+
+<section class="tbr-hero tbr-full-bleed" aria-labelledby="home-title">
+  {{ partial "responsive-photo.html" (dict
+    "path" "images/hero-belgian-flag-overlook.jpg"
+    "alt" "Kelly and Nills holding a Belgian flag on a California trail"
+    "class" "tbr-hero__image"
+    "sizes" "(min-width: 1440px) 792px, (min-width: 1024px) 55vw, 100vw"
+    "priority" true
+  ) }}
+  <div class="tbr-hero__panel">
+    <p class="tbr-eyebrow">{{ .Params.hero.eyebrow }}</p>
+    <h1 id="home-title" class="tbr-hero__title">{{ .Params.hero.title }}</h1>
+    <p class="tbr-hero__lead">{{ .Params.hero.description }}</p>
+    <div class="tbr-hero__actions">
+      <a href="{{ $igURL }}" rel="external" class="tbr-btn tbr-btn--primary">Follow us on Instagram</a>
+      <a href="#contact" class="tbr-link">Get in touch &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section class="tbr-section" aria-labelledby="about-title">
+  <div class="tbr-section__inner tbr-about">
+    <div>
+      <h2 id="about-title" class="tbr-heading">{{ .Params.about.title }}</h2>
+      <div class="tbr-text">{{ .Content }}</div>
+      <a class="tbr-link tbr-standalone-link" href="{{ "about/" | relURL }}">More about Kelly &amp; Nills &rarr;</a>
+    </div>
+    <figure class="tbr-about__gallery">
+      {{ partial "responsive-photo.html" (dict
+        "path" "images/finish-line-inside-trail.jpg"
+        "alt" "Kelly and Nills at the finish line of an Inside Trail race"
+        "sizes" "(min-width: 1024px) 208px, (min-width: 640px) 35vw, calc((100vw - 64px) / 2)"
+      ) }}
+      {{ partial "responsive-photo.html" (dict
+        "path" "images/trailhead-selfie.jpg"
+        "alt" "Kelly and Nills smiling on a training run"
+        "sizes" "(min-width: 1024px) 208px, (min-width: 640px) 35vw, calc((100vw - 64px) / 2)"
+      ) }}
+      <figcaption>Finish lines and everyday miles.</figcaption>
+    </figure>
+  </div>
+</section>
+
+{{ if $stories }}
+  <section class="tbr-section tbr-section--muted" aria-labelledby="stories-title">
+    <div class="tbr-section__inner">
+      <h2 id="stories-title" class="tbr-heading">Latest stories</h2>
       <div class="tbr-stories">
         {{ range first 3 $stories.ByDate.Reverse }}
           <article>
-            <h3 class="tbr-story__title"><a href="{{ .Permalink }}">{{ .Title | emojify }}</a></h3>
-            <div class="tbr-story__meta">{{ partial "functions/date.html" .Date }}</div>
-            {{ with .Description }}
-              <p class="tbr-story__desc">{{ . }}</p>
-            {{ end }}
+            <h3 class="tbr-story__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <time class="tbr-story__meta" datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "functions/date.html" .Date }}</time>
+            {{ with .Description }}<p class="tbr-story__desc">{{ . }}</p>{{ end }}
           </article>
         {{ end }}
       </div>
-      <p style="margin-top:1.75rem;">
-        <a href="{{ "posts" | relURL }}" class="tbr-link">Read all stories &rarr;</a>
-      </p>
-    {{ else }}
-      <p class="tbr-lede" style="margin-top:1.25rem;">
-        Our first race reports, gear reviews and training notes are on the
-        way. In the meantime, follow along on
-        <a href="{{ $igURL }}" target="_blank" rel="external noopener" class="tbr-link">Instagram</a>
-        for the day-to-day.
-      </p>
-    {{ end }}
-  </div>
-</section>
-
-{{/* ---------------------------------------------------------------- */}}
-{{/* 4. About us                                                      */}}
-{{/* ---------------------------------------------------------------- */}}
-<section class="tbr-section">
-  <div class="tbr-section__inner tbr-section__inner--wide">
-    <div class="tbr-about">
-      <div>
-        <h2 class="tbr-heading">About us</h2>
-        <div class="tbr-text">
-          <p>
-            Nills and Kelly are originally from Belgium and moved to the
-            United States in 2018. Nills started running in 2015 for his
-            health, ran his first trail race in 2017, and was hooked
-            immediately — a first 50K followed in 2021, a first 100K in 2024,
-            and a first 100-mile finish in 2025.
-          </p>
-          <p>
-            Kelly has lived with chronic pain since 2016. A 2022 hike through
-            Joshua Tree showed her that movement helped her manage it, which
-            eventually led to running — a first half marathon in 2023 and a
-            first 50K in 2024. Running hasn't made the pain disappear, but
-            moving has helped, and now it's something we share.
-          </p>
-          <p>Different paths, same trails. Read the <a href="{{ "about" | relURL }}">full story</a>.</p>
-        </div>
-      </div>
-      <div class="tbr-about__gallery">
-        {{ with $finishImg }}
-          {{ $resized := .Resize "700x" }}
-          <img
-            src="{{ $resized.Permalink }}"
-            alt="Nills and Kelly at the finish line of an Inside Trail Racing event"
-            loading="lazy"
-          />
-        {{ end }}
-        {{ with $selfieImg }}
-          {{ $resized := .Resize "500x" }}
-          <img
-            src="{{ $resized.Permalink }}"
-            alt="Nills and Kelly on a training run"
-            loading="lazy"
-          />
-        {{ end }}
-      </div>
+      <a href="{{ "posts/" | relURL }}" class="tbr-link tbr-standalone-link">Read all stories &rarr;</a>
     </div>
-  </div>
-</section>
+  </section>
+{{ end }}
 
-{{/* ---------------------------------------------------------------- */}}
-{{/* 5. Instagram                                                     */}}
-{{/* ---------------------------------------------------------------- */}}
-<section class="tbr-section tbr-section--muted tbr-center">
+<section id="contact" class="tbr-section tbr-section--muted tbr-center" aria-labelledby="contact-title">
   <div class="tbr-section__inner tbr-section__inner--narrow">
-    <h2 class="tbr-heading">Follow along</h2>
-    <p class="tbr-lede" style="margin-left:auto;margin-right:auto;">
-      Instagram is where we post the most, most often. Training, trails,
-      race-day chaos and the occasional questionable decision — all in one
-      place.
-    </p>
-    <p style="margin-top:1.5rem;">
-      <a href="{{ $igURL }}" target="_blank" rel="external noopener" class="tbr-btn tbr-btn--primary">
-        @thebelgianrunners on Instagram
-      </a>
-    </p>
-  </div>
-</section>
-
-{{/* ---------------------------------------------------------------- */}}
-{{/* 6. Contact                                                       */}}
-{{/* ---------------------------------------------------------------- */}}
-<section id="contact" class="tbr-section tbr-center">
-  <div class="tbr-section__inner tbr-section__inner--narrow">
-    <h2 class="tbr-heading">Say hello</h2>
-    <p class="tbr-lede" style="margin-left:auto;margin-right:auto;">
-      We love hearing from other runners, race organizers and brands. If
-      you've got a question, an idea, or think we might be a good fit for
-      something — product testing, a collaboration, a race invite — reach
-      out.
-    </p>
-    <p style="margin-top:1.5rem;">
-      <a href="mailto:hello@thebelgianrunners.com" class="tbr-link" style="font-size:1.1rem;">
-        hello@thebelgianrunners.com
-      </a>
-    </p>
+    <h2 id="contact-title" class="tbr-heading">{{ .Params.contact.title }}</h2>
+    <p class="tbr-lede">{{ .Params.contact.description }}</p>
+    <a href="mailto:hello@thebelgianrunners.com" class="tbr-link tbr-standalone-link tbr-email">hello@<wbr>thebelgianrunners.com</a>
   </div>
 </section>

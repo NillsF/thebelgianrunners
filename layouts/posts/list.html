@@ -1,0 +1,26 @@
+{{ define "main" }}
+  <div class="tbr-reading">
+    <header class="tbr-page-header">
+      <p class="tbr-eyebrow">From our running notebooks</p>
+      <h1>{{ .Title }}</h1>
+      <div class="prose tbr-prose">{{ .Content }}</div>
+    </header>
+    {{ if .RegularPages }}
+      <section aria-label="Latest stories">
+        {{ range (.Paginate .RegularPages.ByDate.Reverse).Pages }}
+          {{ partial "article-link.html" . }}
+        {{ end }}
+      </section>
+      {{ partial "pagination.html" . }}
+    {{ else }}
+      <section class="tbr-empty" aria-labelledby="stories-empty-title">
+        <h2 id="stories-empty-title" class="tbr-heading">{{ .Params.emptyHeading }}</h2>
+        <p class="tbr-lede">{{ .Params.emptyText }}</p>
+        <div class="tbr-hero__actions">
+          <a class="tbr-btn tbr-btn--primary" href="https://instagram.com/thebelgianrunners" rel="external">Follow along on Instagram</a>
+          <a class="tbr-link" href="{{ "about/" | relURL }}">Meet Kelly &amp; Nills &rarr;</a>
+        </div>
+      </section>
+    {{ end }}
+  </div>
+{{ end }}

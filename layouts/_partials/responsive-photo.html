@@ -1,0 +1,27 @@
+{{- $image := resources.Get .path -}}
+{{- if not $image -}}
+  {{- errorf "Missing site photo: %s" .path -}}
+{{- else -}}
+  {{- $maxWidth := int (math.Min $image.Width 1440) -}}
+  {{- $widths := slice -}}
+  {{- range slice 320 640 960 -}}
+    {{- if lt . $maxWidth -}}{{- $widths = $widths | append . -}}{{- end -}}
+  {{- end -}}
+  {{- $widths = $widths | append $maxWidth -}}
+  {{- $srcset := slice -}}
+  {{- range $widths -}}
+    {{- $resized := $image.Resize (printf "%dx webp q80" .) -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $resized.RelPermalink $resized.Width) -}}
+  {{- end -}}
+  {{- $fallback := $image.Resize (printf "%dx webp q80" (int (math.Min 960 $maxWidth))) -}}
+  <img
+    src="{{ $fallback.RelPermalink }}"
+    srcset="{{ delimit $srcset ", " }}"
+    sizes="{{ .sizes }}"
+    width="{{ $image.Width }}"
+    height="{{ $image.Height }}"
+    alt="{{ .alt }}"
+    {{ with .class }}class="{{ . }}"{{ end }}
+    {{ if .priority }}fetchpriority="high"{{ else }}loading="lazy" decoding="async"{{ end }}
+  />
+{{- end -}}

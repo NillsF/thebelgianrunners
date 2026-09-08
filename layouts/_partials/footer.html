@@ -1,0 +1,12 @@
+<footer class="tbr-footer print:hidden">
+  <div>
+    <a class="tbr-footer__brand" href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title }}</a>
+    <p>Different paths. Same trails.</p>
+    <small>&copy; {{ now.Year }} Kelly &amp; Nills</small>
+  </div>
+  <nav aria-label="Footer navigation">
+    <a href="{{ "about/" | relURL }}">About us</a>
+    <a href="{{ .Site.Home.RelPermalink }}#contact">Say hello</a>
+    <a href="#the-top">Back to top &uarr;</a>
+  </nav>
+</footer>

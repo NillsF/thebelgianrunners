@@ -20,7 +20,7 @@ enableImageWebp = true
 fingerprintAlgorithm = "sha256"
 
 [header]
-  layout = "basic" # valid options: basic, hamburger, hybrid, custom
+  layout = "custom" # Always-visible, keyboard-accessible navigation; no menu script.
   showTitle = true
 
 [footer]

@@ -7,35 +7,163 @@
    npm/Tailwind build step just for a handful of homepage sections), the
    custom homepage below is styled with plain, semantic CSS classes. */
 
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap");
-
 :root {
-  --tbr-primary: #ea580c;
+  --tbr-primary: #c2410c;
   --tbr-primary-dark: #c2410c;
+  --tbr-primary-hover: #9a3412;
   --tbr-secondary: #0284c7;
   --tbr-ink: #1c1917;
   --tbr-ink-soft: #57534e;
   --tbr-paper: #fafaf9;
   --tbr-line: #e7e5e4;
+  --tbr-display: Georgia, "Times New Roman", serif;
 }
 
 .font-display {
-  font-family: "Fraunces", ui-serif, Georgia, serif;
-  font-optical-sizing: auto;
+  font-family: var(--tbr-display);
+}
+
+body {
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--tbr-ink);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+#the-top {
+  z-index: 10;
+}
+
+#the-top > a:focus {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* A normal footer link replaces the theme's floating control over the photos. */
+#to-top {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.scroll-smooth {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- Navigation ---------- */
+
+.tbr-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem 0;
+}
+
+.tbr-brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--tbr-ink);
+  font-size: 1.15rem;
+  font-weight: 700;
+  align-self: flex-start;
+}
+
+.tbr-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 0 -0.5rem;
+  list-style: none;
+}
+
+.tbr-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem;
+  color: var(--tbr-ink-soft);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.tbr-nav a:hover,
+.tbr-nav a[aria-current] {
+  color: var(--tbr-primary-dark);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+@media (min-width: 768px) {
+  .tbr-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 0;
+    gap: 1rem;
+  }
+  .tbr-nav {
+    gap: 0.75rem;
+  }
+}
+
+.tbr-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  border-top: 1px solid var(--tbr-line);
+  padding: 2rem 0;
+  color: var(--tbr-ink-soft);
+  font-size: 0.875rem;
+}
+
+.tbr-footer__brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 700;
+  color: var(--tbr-ink);
+}
+
+.tbr-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  align-items: flex-start;
+}
+
+.tbr-footer nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.tbr-footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 /* ---------- Layout helpers ---------- */
 
 .tbr-full-bleed {
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: min(100vw, 90rem);
+  margin-inline: calc((100% - min(100vw, 90rem)) / 2);
 }
 
 .tbr-section {
-  padding: 3.5rem 1.5rem;
+  padding: 3rem 0;
 }
 
 .tbr-section--muted {
+  padding-inline: 1.5rem;
   background: var(--tbr-paper);
   border-top: 1px solid var(--tbr-line);
   border-bottom: 1px solid var(--tbr-line);
@@ -44,10 +172,6 @@
 .tbr-section__inner {
   max-width: 56rem;
   margin: 0 auto;
-}
-
-.tbr-section__inner--wide {
-  max-width: 68rem;
 }
 
 .tbr-section__inner--narrow {
@@ -60,16 +184,18 @@
 
 @media (min-width: 640px) {
   .tbr-section {
-    padding: 5rem 2rem;
+    padding-block: 4rem;
   }
 }
 
 /* ---------- Headings & text ---------- */
 
 .tbr-heading {
-  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-family: var(--tbr-display);
   font-size: 1.75rem;
-  font-weight: 600;
+  font-weight: 500;
+  line-height: 1.2;
+  text-wrap: balance;
   color: var(--tbr-ink);
   margin: 0 0 0.75rem;
 }
@@ -99,12 +225,75 @@
 .tbr-text a {
   color: var(--tbr-primary-dark);
   font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Reading pages ---------- */
+
+.tbr-reading {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+.tbr-page-header {
+  margin-bottom: 2rem;
+}
+
+.tbr-page-header h1 {
+  margin: 0 0 1.25rem;
+  font-family: var(--tbr-display);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--tbr-ink);
+  text-wrap: balance;
+}
+
+.tbr-prose {
+  max-width: 100%;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--tbr-ink-soft);
+  overflow-wrap: anywhere;
+}
+
+.tbr-prose :is(h2, h3) {
+  line-height: 1.3;
+  color: var(--tbr-ink);
+}
+
+.tbr-prose h2 {
+  font-family: var(--tbr-display);
+  font-size: 1.65rem;
+  font-weight: 500;
+}
+
+.tbr-prose h3 {
+  margin-top: 2rem;
+  font-size: 1.15rem;
+}
+
+.tbr-empty {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  background: var(--tbr-paper);
+  border-top: 2px solid var(--tbr-primary);
+}
+
+.tbr-empty .tbr-heading {
+  font-size: 1.6rem;
 }
 
 /* ---------- Buttons & links ---------- */
 
 .tbr-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  text-align: center;
   border-radius: 0.5rem;
   padding: 0.65rem 1.35rem;
   font-weight: 600;
@@ -118,16 +307,7 @@
 }
 
 .tbr-btn--primary:hover {
-  background: var(--tbr-primary-dark);
-}
-
-.tbr-btn--outline {
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  color: #fff;
-}
-
-.tbr-btn--outline:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--tbr-primary-hover);
 }
 
 .tbr-link {
@@ -143,45 +323,49 @@
 /* ---------- Hero ---------- */
 
 .tbr-hero {
-  position: relative;
-  min-height: 62vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  display: grid;
+  background: var(--tbr-paper);
 }
 
 .tbr-hero__image {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  object-position: center 40%;
+  object-position: center 65%;
 }
 
 .tbr-hero__panel {
-  position: relative;
-  z-index: 1;
-  margin-top: auto;
-  width: 100%;
-  background: rgba(28, 25, 23, 0.92);
-  padding: 1.75rem 1.5rem;
+  align-self: center;
+  padding: 2rem 1.5rem 2.5rem;
+}
+
+.tbr-eyebrow {
+  color: var(--tbr-primary-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
 }
 
 .tbr-hero__title {
-  font-family: "Fraunces", ui-serif, Georgia, serif;
-  font-weight: 600;
-  color: #fff;
-  font-size: 1.75rem;
-  line-height: 1.2;
+  font-family: var(--tbr-display);
+  font-weight: 500;
+  color: var(--tbr-ink);
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  line-height: 1.12;
   max-width: 40rem;
   margin: 0;
+  text-wrap: balance;
 }
 
 .tbr-hero__lead {
   margin-top: 0.85rem;
   max-width: 34rem;
-  color: #e7e5e4;
+  color: var(--tbr-ink-soft);
   font-size: 1rem;
   line-height: 1.65;
 }
@@ -194,61 +378,43 @@
   align-items: center;
 }
 
+.tbr-hero__actions .tbr-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
 @media (min-width: 640px) {
-  .tbr-hero {
-    min-height: 72vh;
-  }
   .tbr-hero__panel {
-    padding: 2.5rem 3.5rem;
-  }
-  .tbr-hero__title {
-    font-size: 3rem;
+    padding: 2.5rem 3rem;
   }
   .tbr-hero__lead {
     font-size: 1.15rem;
   }
 }
 
+@media (min-width: 640px) and (max-width: 1023px) {
+  .tbr-hero__image {
+    aspect-ratio: 2 / 1;
+    object-position: center bottom;
+  }
+}
+
 @media (min-width: 1024px) {
   .tbr-hero {
-    min-height: 82vh;
+    grid-template-columns: 45% 55%;
+  }
+  .tbr-hero__image {
+    grid-column: 2;
+    grid-row: 1;
+    height: 100%;
+    min-height: 32rem;
   }
   .tbr-hero__panel {
-    padding: 3rem 6rem;
+    grid-column: 1;
+    grid-row: 1;
+    padding: 3rem clamp(2rem, 4vw, 5rem);
   }
-  .tbr-hero__title {
-    font-size: 3.5rem;
-  }
-}
-
-/* ---------- Topics grid ("What we share") ---------- */
-
-.tbr-topics {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  margin-top: 2.5rem;
-}
-
-@media (min-width: 640px) {
-  .tbr-topics {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 2.5rem;
-  }
-}
-
-.tbr-topic__name {
-  font-family: "Fraunces", ui-serif, Georgia, serif;
-  font-weight: 600;
-  font-size: 1.15rem;
-  color: var(--tbr-ink);
-  margin: 0 0 0.35rem;
-}
-
-.tbr-topic__desc {
-  color: var(--tbr-ink-soft);
-  margin: 0;
-  line-height: 1.6;
 }
 
 /* ---------- Stories ---------- */
@@ -261,7 +427,7 @@
 }
 
 .tbr-story__title {
-  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-family: var(--tbr-display);
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0;
@@ -277,6 +443,7 @@
 }
 
 .tbr-story__meta {
+  display: block;
   color: var(--tbr-ink-soft);
   font-size: 0.9rem;
   margin-top: 0.2rem;
@@ -299,19 +466,49 @@
 @media (min-width: 1024px) {
   .tbr-about {
     grid-template-columns: 1fr 1fr;
-    column-gap: 4rem;
+    column-gap: 3rem;
   }
 }
 
 .tbr-about__gallery {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  margin: 0;
 }
 
 .tbr-about__gallery img {
   width: 100%;
+  height: auto;
   border-radius: 0.5rem;
   display: block;
   object-fit: cover;
+}
+
+.tbr-about__gallery figcaption {
+  grid-column: 1 / -1;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--tbr-ink-soft);
+}
+
+.tbr-standalone-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 1rem;
+}
+
+.tbr-email {
+  display: inline-block;
+  overflow-wrap: anywhere;
+  padding-block: 0.5rem;
+  font-size: 1rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+#contact {
+  scroll-margin-top: 1.5rem;
+  margin-bottom: 3rem;
 }

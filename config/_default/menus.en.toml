@@ -11,6 +11,7 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
+  identifier = "stories"
   name = "Stories"
   pageRef = "posts"
   weight = 10

@@ -1,0 +1,17 @@
+<header class="tbr-header print:hidden">
+  <a class="tbr-brand" href="{{ .Site.Home.RelPermalink }}" rel="home">{{ .Site.Title }}</a>
+  <nav aria-label="Main navigation">
+    <ul class="tbr-nav">
+      {{ range .Site.Menus.main }}
+        {{ if and (eq .Identifier "stories") (not (where $.Site.RegularPages "Type" "posts")) }}{{ continue }}{{ end }}
+        <li>
+          <a href="{{ .URL }}"
+            {{ if $.IsMenuCurrent "main" . }}aria-current="page"
+            {{ else if $.HasMenuCurrent "main" . }}aria-current="location"{{ end }}
+            {{ with .Params.rel }}rel="{{ . }}"{{ end }}
+          >{{ .Name }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+</header>

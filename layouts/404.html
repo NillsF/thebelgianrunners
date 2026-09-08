@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <section class="tbr-reading" aria-labelledby="not-found-title">
+    <header class="tbr-page-header">
+      <p class="tbr-eyebrow">404 · Page not found</p>
+      <h1 id="not-found-title">A little off trail.</h1>
+    </header>
+    <p class="tbr-lede">That page isn't here. The link may be out of date, or the address might have a typo.</p>
+    <div class="tbr-hero__actions">
+      <a class="tbr-btn tbr-btn--primary" href="{{ .Site.Home.RelPermalink }}">Back to the homepage</a>
+      <a class="tbr-link" href="{{ .Site.Home.RelPermalink }}#contact">Let us know about a broken link &rarr;</a>
+    </div>
+  </section>
+{{ end }}

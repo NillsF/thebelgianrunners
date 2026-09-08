@@ -1,8 +1,9 @@
 # The Belgian Runners
 
-Source for [thebelgianrunners.com](https://nillsf.github.io/thebelgianrunners/) — a
-running-focused website by Nills and Kelly: two Belgian runners living in California,
-sharing race reports, training notes, gear reviews and trail adventures.
+Source for [The Belgian Runners](https://nillsf.github.io/thebelgianrunners/) — the
+online home of Kelly and Nills, two Belgian runners living in California.
+The landing page introduces us, sends runners to Instagram, and makes it easy for
+fellow runners, brands and race organizers to get in touch.
 
 Built with [Hugo](https://gohugo.io) and the [Congo](https://github.com/jpanther/congo)
 theme. Fully static — Markdown content, no CMS, no database, no JavaScript framework.
@@ -34,10 +35,10 @@ git submodule update --init --recursive
 ## Local development
 
 ```sh
-hugo server -D
+hugo server -D --baseURL http://localhost:1313/thebelgianrunners/
 ```
 
-This starts a live-reloading local server (usually at `http://localhost:1313/`) and
+This starts a live-reloading local server at `http://localhost:1313/thebelgianrunners/` and
 includes draft content (`-D`). Leave off `-D` to preview the site exactly as it will
 appear once published.
 
@@ -45,12 +46,18 @@ appear once published.
 
 ```
 content/
-├── _index.md          # homepage front matter (see layouts/_partials/home/custom.html)
+├── _index.md          # homepage copy, hero/contact metadata and short About introduction
 ├── about/_index.md     # About page
 └── posts/              # "Stories" — race reports, gear reviews, training, adventures
     └── _index.md
 config/_default/        # site configuration (Congo theme config, copied on install)
-layouts/_partials/home/custom.html   # custom homepage (hero, sections) overriding Congo
+layouts/_partials/home/custom.html   # compact homepage overriding Congo
+layouts/_partials/responsive-photo.html # responsive WebP photos with intrinsic dimensions
+layouts/_partials/header/custom.html # always-visible responsive navigation
+layouts/_partials/footer.html       # footer with contact and back-to-top links
+layouts/posts/list.html             # Stories list and intentional empty state
+layouts/simple.html                # readable About layout
+layouts/404.html                   # recovery links for missing pages
 assets/
 ├── css/custom.css       # brand styling for the custom homepage (see note below)
 ├── css/schemes/trailhead.css  # custom "trailhead" colour scheme for the theme
@@ -60,6 +67,15 @@ themes/congo/            # Congo theme, included as a git submodule
 ```
 
 ## Publishing new content
+
+The homepage is intentionally a short online introduction, not an empty publication.
+Edit its wording in `content/_index.md`: the front matter contains the hero and contact
+copy, and the Markdown body contains the short About introduction. The full personal
+story lives in `content/about/_index.md`.
+
+The Stories navigation link and the homepage's latest-stories section appear
+automatically when a non-draft post is published. Until then, `/posts/` remains
+available with a friendly empty state, but isn't promoted on the homepage.
 
 Every long-form piece (race report, gear review, training article, adventure story)
 lives under `content/posts/` as a Markdown file. Clean URLs like
@@ -116,16 +132,21 @@ actively-maintained, lightweight Hugo themes because it offers:
   required just to run the site (see note below on customising styles).
 - Active maintenance and clear documentation.
 
-The homepage itself is fully custom (`layouts/_partials/home/custom.html`), styled with
-its own small stylesheet (`assets/css/custom.css`) so the site feels specifically like
-The Belgian Runners rather than a generic Hugo demo, while every other page (About,
-Stories, taxonomies, 404, RSS) uses Congo's stock, well-tested layouts.
+The homepage, header, footer, About, Stories and 404 layouts are small project-level
+overrides, styled in `assets/css/custom.css`. Article, taxonomy and feed templates
+continue to use Congo. The theme submodule itself is not modified.
+
+Photography is served as responsive, compressed WebP with explicit dimensions to
+reserve space while loading. The hero is prioritized; supporting photos are lazy-loaded.
+System sans-serif and Georgia heading fonts avoid third-party font requests. Navigation
+works without JavaScript, with visible keyboard focus, current-page indicators and
+touch-sized targets; smooth scrolling respects reduced-motion preferences.
 
 > **Note on styling:** Congo ships a *precompiled* Tailwind CSS bundle containing only
 > the utility classes the theme itself uses. Rather than adding an npm/Tailwind build
 > step (and the added maintenance overhead) just for a handful of homepage sections,
 > `assets/css/custom.css` uses small, plain, semantic CSS classes (prefixed `tbr-`) for
-> the custom homepage. Everything else relies on Congo's built-in styles as normal.
+> the custom layouts, alongside Congo's built-in styles.
 
 ## Deployment
 
