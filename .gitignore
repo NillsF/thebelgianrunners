@@ -1,0 +1,13 @@
+# Hugo build output
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# Node (only if you ever add tooling locally)
+node_modules/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

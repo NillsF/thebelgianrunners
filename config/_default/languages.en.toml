@@ -1,0 +1,23 @@
+locale = "en"
+label = "English"
+direction = "ltr"
+weight = 1
+
+title = "The Belgian Runners"
+copyright = "The Belgian Runners"
+
+[params]
+  dateFormat = "2 January 2006"
+
+  mainSections = ["posts"]
+  description = "Two Belgians running around California and beyond — trail running, ultrarunning, training, gear and adventure, from Nills and Kelly."
+
+[params.author]
+  name = "Nills & Kelly"
+  image = "images/trailhead-selfie.jpg"
+  headline = "Two Belgian runners in California"
+  bio = "We're middle-of-the-pack runners who take training seriously, chase increasingly questionable distances, and share what we learn along the way."
+  links = [
+    { email = "mailto:hello@thebelgianrunners.com" },
+    { instagram = "https://instagram.com/thebelgianrunners" },
+  ]
