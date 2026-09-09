@@ -454,6 +454,69 @@ summary:focus-visible {
   color: var(--tbr-ink-soft);
 }
 
+.tbr-route-list {
+  display: grid;
+  gap: 0.85rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.tbr-prose .tbr-route-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--tbr-line);
+  border-left: 4px solid #fc5200;
+  border-radius: 0.5rem;
+  color: var(--tbr-ink);
+  text-decoration: none;
+}
+
+.tbr-prose .tbr-route-card:hover {
+  border-color: #fc5200;
+}
+
+.tbr-route-card span {
+  color: var(--tbr-ink-soft);
+  font-size: 0.95rem;
+}
+
+.tbr-reel-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.tbr-reel {
+  min-width: 0;
+}
+
+.tbr-reel iframe {
+  display: block;
+  width: 100%;
+  height: 36rem;
+  border: 1px solid var(--tbr-line);
+  border-radius: 0.5rem;
+  background: var(--tbr-paper);
+}
+
+.tbr-prose .tbr-reel a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 1024px) {
+  .tbr-reel-grid {
+    width: min(75rem, calc(100vw - 3rem));
+    margin-left: 50%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    transform: translateX(-50%);
+  }
+}
+
 /* ---------- About ---------- */
 
 .tbr-about {
