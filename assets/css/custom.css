@@ -476,9 +476,13 @@ summary:focus-visible {
   border-color: #fc5200;
 }
 
-.tbr-route-card span {
+.tbr-route-card p {
+  margin: 0;
+}
+
+.tbr-route-card__stats {
   color: var(--tbr-ink-soft);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .tbr-reel-grid {
