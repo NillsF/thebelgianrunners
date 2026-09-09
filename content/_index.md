@@ -19,5 +19,5 @@ description = "Questions, race invitations, or a collaboration that fits what we
 We're Kelly and Nills. Originally from Belgium, we moved to the United States in
 2018 and now call California home.
 
-We found running in different ways, but now share the trails and adventures.
+We found running in different ways, but today share the trails and adventures.
 We take the sport seriously, without taking ourselves too seriously.

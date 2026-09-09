@@ -19,13 +19,12 @@ got him hooked on trails. From there it kept growing: a first 50K in 2021, a fir
 
 Kelly has lived with chronic pain since 2016. In 2022, a hike through Joshua Tree
 showed her that movement helped her manage her symptoms — running has not made her
-pain disappear, but it's become part of how she keeps moving. That discovery led to a
+pain disappear, but it has become part of how she deals with it. That discovery led to a
 first half marathon in 2023 and a first 50K in 2024.
 
 ### What we share now
 
-These days we train together, race together
-(usually somewhere in the middle of the pack), and share the whole thing online because
+These days we train together, race together, and share the whole thing online because
 we genuinely enjoy it — the good runs, the bad ones, the gear that works, the gear that
 doesn't, and everything in between.
 
