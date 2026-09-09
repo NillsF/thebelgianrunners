@@ -491,13 +491,11 @@ summary:focus-visible {
   min-width: 0;
 }
 
-.tbr-reel iframe {
+.tbr-reel .instagram-media {
   display: block;
-  width: 100%;
-  height: 36rem;
-  border: 1px solid var(--tbr-line);
-  border-radius: 0.5rem;
-  background: var(--tbr-paper);
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 auto !important;
 }
 
 .tbr-prose .tbr-reel a {
