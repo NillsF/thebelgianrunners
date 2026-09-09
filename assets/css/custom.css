@@ -491,19 +491,63 @@ summary:focus-visible {
   min-width: 0;
 }
 
-.tbr-reel .instagram-media {
+.tbr-prose .tbr-reel-card {
   display: block;
-  width: 100% !important;
-  min-width: 0 !important;
-  margin: 0 auto !important;
+  color: var(--tbr-ink);
+  text-decoration: none;
 }
 
-.tbr-prose .tbr-reel a {
-  display: inline-flex;
+.tbr-reel-card__media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 9 / 16;
+  margin-bottom: 0.55rem;
+  border-radius: 0.5rem;
+  background: var(--tbr-paper);
+  box-shadow: 0 0 0 1px var(--tbr-line);
+}
+
+.tbr-reel-card__media img {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: cover;
+  transition: transform 180ms ease;
+}
+
+.tbr-reel-card__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding-left: 0.2rem;
+  place-items: center;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.58);
+  color: #fff;
+  font-size: 1.35rem;
+  transform: translate(-50%, -50%);
+}
+
+.tbr-prose .tbr-reel-card > span:last-child {
+  display: flex;
   align-items: center;
   min-height: 44px;
-  margin-top: 0.35rem;
   font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.tbr-reel-card:hover .tbr-reel-card__media img {
+  transform: scale(1.025);
+}
+
+.tbr-prose .tbr-reel-card:hover > span:last-child {
+  color: var(--tbr-primary);
+  text-decoration: underline;
 }
 
 @media (min-width: 1024px) {

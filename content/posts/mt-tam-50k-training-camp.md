@@ -46,23 +46,30 @@ If you are preparing for a trail race, spending time on the actual course is har
 
 <div class="tbr-reel-grid">
   <div class="tbr-reel">
-    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/Dc8wXDrBHBG/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#fff; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:calc(100% - 2px);">
-      <a href="https://www.instagram.com/reel/Dc8wXDrBHBG/?utm_source=ig_embed&amp;utm_campaign=loading" target="_blank" rel="noopener">View this post on Instagram</a>
-    </blockquote>
-    <a href="https://www.instagram.com/thebelgianrunners/reel/Dc8wXDrBHBG/" rel="external">Day 1: starting training camp &rarr;</a>
+    <a class="tbr-reel-card" href="https://www.instagram.com/reel/Dc8wXDrBHBG/" target="_blank" rel="external noopener">
+      <span class="tbr-reel-card__media">
+        <img src="/images/reels/mt-tam-day-1.jpg" alt="Kelly and Nills starting their Mt. Tam training camp" width="382" height="679" loading="lazy" decoding="async">
+        <span class="tbr-reel-card__play" aria-hidden="true">&#9654;</span>
+      </span>
+      <span>Day 1: starting training camp &rarr;</span>
+    </a>
   </div>
   <div class="tbr-reel">
-    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/Dc_g0fSsN5m/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#fff; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:calc(100% - 2px);">
-      <a href="https://www.instagram.com/reel/Dc_g0fSsN5m/?utm_source=ig_embed&amp;utm_campaign=loading" target="_blank" rel="noopener">View this post on Instagram</a>
-    </blockquote>
-    <a href="https://www.instagram.com/thebelgianrunners/reel/Dc_g0fSsN5m/" rel="external">Day 2: a full day of eating &rarr;</a>
+    <a class="tbr-reel-card" href="https://www.instagram.com/reel/Dc_g0fSsN5m/" target="_blank" rel="external noopener">
+      <span class="tbr-reel-card__media">
+        <img src="/images/reels/mt-tam-day-2.jpg" alt="Food and fueling from day two of the Mt. Tam training camp" width="382" height="679" loading="lazy" decoding="async">
+        <span class="tbr-reel-card__play" aria-hidden="true">&#9654;</span>
+      </span>
+      <span>Day 2: a full day of eating &rarr;</span>
+    </a>
   </div>
   <div class="tbr-reel">
-    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DdB6c1mB7G_/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#fff; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:calc(100% - 2px);">
-      <a href="https://www.instagram.com/reel/DdB6c1mB7G_/?utm_source=ig_embed&amp;utm_campaign=loading" target="_blank" rel="noopener">View this post on Instagram</a>
-    </blockquote>
-    <a href="https://www.instagram.com/thebelgianrunners/reel/DdB6c1mB7G_/" rel="external">Day 3: 43 miles and 7,500 feet &rarr;</a>
+    <a class="tbr-reel-card" href="https://www.instagram.com/reel/DdB6c1mB7G_/" target="_blank" rel="external noopener">
+      <span class="tbr-reel-card__media">
+        <img src="/images/reels/mt-tam-day-3.jpg" alt="Kelly finishing the three-day Mt. Tam training camp" width="382" height="679" loading="lazy" decoding="async">
+        <span class="tbr-reel-card__play" aria-hidden="true">&#9654;</span>
+      </span>
+      <span>Day 3: 43 miles and 7,500 feet &rarr;</span>
+    </a>
   </div>
 </div>
-
-<script async src="https://www.instagram.com/embed.js"></script>
