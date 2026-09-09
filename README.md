@@ -1,6 +1,6 @@
 # The Belgian Runners
 
-Source for [The Belgian Runners](https://nillsf.github.io/thebelgianrunners/) — the
+Source for [The Belgian Runners](https://thebelgianrunners.com/) — the
 online home of Kelly and Nills, two Belgian runners living in California.
 The landing page introduces us, sends runners to Instagram, and makes it easy for
 fellow runners, brands and race organizers to get in touch.
@@ -8,11 +8,10 @@ fellow runners, brands and race organizers to get in touch.
 Built with [Hugo](https://gohugo.io) and the [Congo](https://github.com/jpanther/congo)
 theme. Fully static — Markdown content, no CMS, no database, no JavaScript framework.
 
-> **Note:** `thebelgianrunners.com` hasn't been purchased yet. The site currently
-> deploys to the free default GitHub Pages URL:
-> **https://nillsf.github.io/thebelgianrunners/**. See
-> [Switching to the custom domain later](#switching-to-the-custom-domain-later) below
-> for the steps to move to the real domain once it's bought.
+The canonical URL is **https://thebelgianrunners.com/**, with `www` redirecting to
+the apex domain once DNS and HTTPS provisioning are complete. Hosting uses GitHub
+Pages. See [Custom domain and HTTPS](#custom-domain-and-https) below for setup and
+troubleshooting.
 
 ## Requirements
 
@@ -155,31 +154,62 @@ Pushing to `main` triggers `.github/workflows/hugo.yml`, which:
 1. Checks out the repo (including the Congo submodule)
 2. Installs Hugo
 3. Builds the site with `hugo --minify`, using GitHub's Pages configuration to set the
-   correct base URL automatically (so this works unchanged for the current
-   `github.io` URL and, later, for the custom domain)
+   correct base URL automatically (including the configured custom domain)
 4. Publishes the result to GitHub Pages
 
 The very first time this repo is set up, GitHub Pages needs to be pointed at "GitHub
 Actions" as its source: **Settings → Pages → Build and deployment → Source → GitHub
 Actions**.
 
-### Switching to the custom domain later
+### Custom domain and HTTPS
 
-Once `thebelgianrunners.com` is purchased:
+Associate the domain with GitHub Pages **before** pointing DNS at GitHub. In the
+repository's **Settings → Pages**, keep **GitHub Actions** as the publishing source
+and set the custom domain to `thebelgianrunners.com`. The old GitHub Pages URL
+redirects to this domain; temporary unavailability is expected during DNS cutover.
 
-1. Point its DNS at GitHub Pages (an `ALIAS`/`ANAME`/`A` record for the apex domain,
-   plus optionally a `CNAME` record for `www` pointing at `nillsf.github.io`). See the
-   [GitHub Pages custom domain docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)
-   for current recommended record values.
-2. Add a `static/CNAME` file to this repo containing exactly:
-   ```
-   thebelgianrunners.com
-   ```
-3. In the repo's **Settings → Pages**, set the custom domain to
-   `thebelgianrunners.com` and enable **Enforce HTTPS** once it's available.
-4. Optionally update `baseURL` in `config/_default/hugo.toml` to
-   `https://thebelgianrunners.com/` for local builds (the GitHub Actions workflow
-   already detects the correct URL automatically via `actions/configure-pages`).
+Account-level ownership verification is a separate recommended protection against
+domain takeover. In the owner's personal **GitHub Settings → Pages**, add and
+verify the domain using the exact TXT record GitHub provides. Keep that record
+after verification. Repository domain association does not prove account-level
+ownership verification, and no verification token is stored in this repository.
 
-No other changes are required — the site's internal links all use Hugo's relative URL
-helpers, so they adapt automatically to whichever base URL is configured.
+In Namecheap's DNS dashboard, configure these website records (automatic/default
+TTL is fine):
+
+| Type | Host | Value |
+| --- | --- | --- |
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| CNAME | `www` | `nillsf.github.io` |
+
+The `www` target is a hostname, with no protocol or repository path. GitHub Pages
+redirects `www.thebelgianrunners.com` to the configured apex domain when both are
+correctly pointed at Pages. Replace conflicting parking/URL redirect or website
+records for `@` and `www`; do not leave stale A or AAAA records pointing elsewhere.
+Do not alter unrelated TXT records or email settings.
+
+After DNS propagates and GitHub provisions the certificate, enable **Enforce HTTPS**
+in the repository's **Settings → Pages**. If the DNS check fails or HTTPS is not
+available, check the exact website records above, conflicting records, and any CAA
+restrictions that could prevent GitHub's Let's Encrypt certificate issuance.
+Certificate provisioning may take up to 24 hours after correct DNS is visible.
+Do not remove the Pages domain association simply because DNS or the certificate
+is still pending, and do not bypass browser TLS warnings.
+
+This repository uses a custom GitHub Actions publishing workflow: GitHub ignores
+and does **not require** a `CNAME` file in its artifact. Do not add `static/CNAME`;
+manage the custom domain in Pages settings. `config/_default/hugo.toml` uses
+`https://thebelgianrunners.com/` for production builds, while the workflow reads the
+Pages base URL through `actions/configure-pages`. The explicit localhost override
+in [Local development](#local-development) keeps previews on your machine.
+
+Namecheap email forwarding is independent of website hosting and uses its own
+MX/SPF records. Preserve those records and manage forwarding destinations privately
+in Namecheap; the site's public contact address remains
+[hello@thebelgianrunners.com](mailto:hello@thebelgianrunners.com).
+
+See GitHub's [custom domain documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)
+for current DNS, verification and HTTPS guidance.

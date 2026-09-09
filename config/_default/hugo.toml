@@ -2,11 +2,8 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://jpanther.github.io/congo/docs/getting-started/
 
-# NOTE: no custom domain has been purchased yet, so this points at the default
-# GitHub Pages URL. Once thebelgianrunners.com is live, update this to
-# "https://thebelgianrunners.com/", add a static/CNAME file with that domain,
-# and set the custom domain in the repo's Settings -> Pages.
-baseURL = "https://nillsf.github.io/thebelgianrunners/"
+# Production URL; GitHub Actions also reads the repository's Pages configuration.
+baseURL = "https://thebelgianrunners.com/"
 
 # Installed as a git submodule at themes/congo (see .gitmodules)
 theme = "congo"
