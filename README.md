@@ -154,7 +154,8 @@ Pushing to `main` triggers `.github/workflows/hugo.yml`, which:
 1. Checks out the repo (including the Congo submodule)
 2. Installs Hugo
 3. Builds the site with `hugo --minify`, using GitHub's Pages configuration to set the
-   correct base URL automatically (including the configured custom domain)
+   correct base URL automatically (including the configured custom domain), with
+   HTTPS canonical URLs even while certificate provisioning is pending
 4. Publishes the result to GitHub Pages
 
 The very first time this repo is set up, GitHub Pages needs to be pointed at "GitHub
