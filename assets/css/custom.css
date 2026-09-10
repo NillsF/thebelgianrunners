@@ -460,22 +460,6 @@ summary:focus-visible {
   margin: 1.5rem 0 2rem;
 }
 
-.tbr-prose .tbr-route-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  padding: 1rem 1.15rem;
-  border: 1px solid var(--tbr-line);
-  border-left: 4px solid #fc5200;
-  border-radius: 0.5rem;
-  color: var(--tbr-ink);
-  text-decoration: none;
-}
-
-.tbr-prose .tbr-route-card:hover {
-  border-color: #fc5200;
-}
-
 .tbr-route-card p {
   margin: 0;
 }

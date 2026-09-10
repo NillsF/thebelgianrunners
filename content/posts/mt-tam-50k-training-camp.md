@@ -26,13 +26,13 @@ That focus on both training and recovery made the weekend feel like a useful reh
     <p><strong>Saturday: Training camp day 1</strong></p>
     <p class="tbr-route-card__stats">16.8 miles / 3,220 ft of climbing</p>
     <p>Starting at Muir Beach, about the midpoint of the race, we climbed to the Cardiac Hill aid station via the Cardiac Climb. From there, the route followed the race course into Muir Woods before returning to Muir Beach over Diaz Ridge.</p>
-    <p><a href="https://www.strava.com/routes/3531011771840433510" rel="external">View the race-course route on Strava &rarr;</a></p>
+    <p><a href="https://www.strava.com/routes/3531011771840433510" rel="external">View the day 1 route on Strava &rarr;</a></p>
   </div>
   <div class="tbr-route-card">
     <p><strong>Sunday: Training camp day 2</strong></p>
     <p class="tbr-route-card__stats">13.7 miles / 3,220 ft of climbing</p>
     <p>Starting at Stinson Beach, just like the race, we climbed Dipsea and Steep Ravine to the Cardiac Hill aid station. We then ran the other Muir Woods loop from the race course and descended Dipsea Trail back to the finish.</p>
-    <p><a href="https://www.strava.com/routes/3531013634993702658" rel="external">View the race-course route on Strava &rarr;</a></p>
+    <p><a href="https://www.strava.com/routes/3531013634993702658" rel="external">View the day 2 route on Strava &rarr;</a></p>
   </div>
   <div class="tbr-route-card">
     <p><strong>Monday: Lakes recovery loop</strong></p>
